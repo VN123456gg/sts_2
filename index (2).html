@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSA Algorithms - Complete Guide</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f4f8;
+        color: #2d3748;
+        line-height: 1.6;
+        display: flex;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 280px;
+        background: #1a202c;
+        color: #e2e8f0;
+        height: 100vh;
+        position: fixed;
+        overflow-y: auto;
+        padding: 20px 0;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h2 {
+        text-align: center;
+        padding: 15px 20px;
+        font-size: 1.3em;
+        color: #63b3ed;
+        border-bottom: 1px solid #2d3748;
+        margin-bottom: 15px;
+    }
+
+    .sidebar a {
+        display: block;
+        color: #cbd5e0;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 0.9em;
+        border-left: 3px solid transparent;
+        transition: all 0.2s;
+    }
+
+    .sidebar a:hover {
+        background: #2d3748;
+        color: #63b3ed;
+        border-left-color: #63b3ed;
+    }
+
+    .sidebar .section-title {
+        padding: 15px 20px 5px;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        color: #718096;
+        letter-spacing: 1px;
+    }
+
+    /* Main content */
+    .main {
+        margin-left: 280px;
+        padding: 40px;
+        max-width: 1100px;
+        width: 100%;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    }
+
+    .header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    .header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+    }
+
+    h2 {
+        color: #2d3748;
+        font-size: 1.8em;
+        margin: 40px 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #667eea;
+    }
+
+    h3 {
+        color: #4a5568;
+        font-size: 1.3em;
+        margin: 25px 0 15px;
+    }
+
+    h4 {
+        color: #667eea;
+        font-size: 1.1em;
+        margin: 20px 0 10px;
+    }
+
+    p {
+        margin-bottom: 12px;
+    }
+
+    /* Code blocks */
+    pre {
+        background: #1a202c;
+        color: #e2e8f0;
+        padding: 20px;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 15px 0;
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.5;
+        border-left: 4px solid #667eea;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    code {
+        font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        background: #edf2f7;
+        color: #d53f8c;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.9em;
+    }
+
+    pre code {
+        background: none;
+        color: inherit;
+        padding: 0;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    th {
+        background: #667eea;
+        color: white;
+        padding: 12px 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    tr:hover {
+        background: #f7fafc;
+    }
+
+    /* Info boxes */
+    .info-box {
+        background: #ebf8ff;
+        border-left: 4px solid #3182ce;
+        padding: 15px 20px;
+        border-radius: 6px;
+        margin: 15px 0;
+    }
+
+    .info-box strong {
+        color: #2c5282;
+    }
+
+    .complexity {
+        display: inline-block;
+        background: #fed7d7;
+        color: #c53030;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin: 5px 5px 5px 0;
+    }
+
+    .complexity.good {
+        background: #c6f6d5;
+        color: #22543d;
+    }
+
+    .complexity.medium {
+        background: #fefcbf;
+        color: #744210;
+    }
+
+    .methodology {
+        background: #f7fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+    }
+
+    .methodology h4 {
+        margin-top: 0;
+        color: #667eea;
+    }
+
+    .methodology ul {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .methodology li {
+        margin-bottom: 8px;
+    }
+
+    /* Section divider */
+    .section-divider {
+        height: 2px;
+        background: linear-gradient(90deg, #667eea, transparent);
+        margin: 40px 0;
+    }
+
+    /* Back to top */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #667eea;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 1.5em;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        transition: transform 0.2s;
+    }
+
+    .back-to-top:hover {
+        transform: scale(1.1);
+    }
+
+    /* Print styles */
+    @media print {
+        .sidebar, .back-to-top {
+            display: none;
+        }
+        .main {
+            margin-left: 0;
+            padding: 20px;
+        }
+        pre {
+            background: #f5f5f5;
+            color: #000;
+            border: 1px solid #ccc;
+            page-break-inside: avoid;
+        }
+        h2 {
+            page-break-before: always;
+        }
+        h2:first-of-type {
+            page-break-before: avoid;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .sidebar {
+            display: none;
+        }
+        .main {
+            margin-left: 0;
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<nav class="sidebar">
+    <h2>📚 DSA Guide</h2>
+
+    <div class="section-title">Algorithms</div>
+    <a href="#hcf">1. HCF / GCD</a>
+    <a href="#karatsuba">2. Karatsuba</a>
+    <a href="#longest1s">3. Longest Sequence of 1s</a>
+    <a href="#nibbles">4. Swap Nibbles</a>
+    <a href="#blockswap">5. Block Swap</a>
+    <a href="#maxproduct">6. Max Product Subarray</a>
+    <a href="#hourglass">7. Hourglass Sum</a>
+    <a href="#equilibrium">8. Max Equilibrium Sum</a>
+    <a href="#leaders">9. Leaders in Array</a>
+    <a href="#majority">10. Majority Element</a>
+    <a href="#palindrome">11. First Palindromic String</a>
+    <a href="#natural">12. Natural Sort Order</a>
+
+    <div class="section-title">Reference</div>
+    <a href="#summary">Summary Table</a>
+</nav>
+
+<!-- Main Content -->
+<main class="main">
+
+    <div class="header">
+        <h1>Complete DSA Algorithms Guide</h1>
+        <p>12 Essential Algorithms with Methodology, Pseudocode & User-Input Java Code</p>
+    </div>
+
+    <!-- ================= 1. HCF ================= -->
+    <section id="hcf">
+        <h2>1. Euclid's Algorithm (HCF / GCD)</h2>
+
+        <h3>1.1 Brute Force Approach</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Start from the smaller of the two numbers</li>
+                <li>Check every number downward until both divide evenly</li>
+                <li>First common divisor found is the HCF</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION bruteForceHCF(a, b):
+    gcf = -1
+    FOR i = min(a, b) DOWNTO 1:
+        IF a % i == 0 AND b % i == 0:
+            gcf = i
+            BREAK
+    RETURN gcf</code></pre>
+
+        <span class="complexity">⏱ O(min(a,b))</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        int b = sc.nextInt();
+
+        int gcf = -1;
+
+        for (int i = Math.min(a, b); i >= 1; i--) {
+            if (a % i == 0 && b % i == 0) {
+                gcf = i;
+                break;
+            }
+        }
+
+        System.out.println("HCF = " + gcf);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>1.2 Subtraction Method</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Repeatedly subtract the smaller number from the larger</li>
+                <li>Continue until both numbers become equal</li>
+                <li>The common value is the HCF</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION subtractionHCF(a, b):
+    WHILE a != b:
+        IF a > b: a = a - b
+        ELSE: b = b - a
+    RETURN a</code></pre>
+
+        <span class="complexity medium">⏱ O(max(a,b))</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        int b = sc.nextInt();
+
+        while (a != b) {
+            if (a > b) a = a - b;
+            else b = b - a;
+        }
+
+        System.out.println("HCF = " + a);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>1.3 Euclidean Algorithm (Modulus Method)</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Replace (a, b) with (b, a % b)</li>
+                <li>Repeat until b becomes 0</li>
+                <li>When b = 0, a contains the HCF</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION euclideanHCF(a, b):
+    WHILE b != 0:
+        temp = a % b
+        a = b
+        b = temp
+    RETURN a</code></pre>
+
+        <span class="complexity good">⏱ O(log(min(a,b)))</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        int a = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        int b = sc.nextInt();
+
+        while (b != 0) {
+            int temp = a % b;
+            a = b;
+            b = temp;
+        }
+
+        System.out.println("HCF = " + a);
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 2. KARATSUBA ================= -->
+    <section id="karatsuba">
+        <h2>2. Karatsuba Algorithm</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Divide each number into two halves: high and low</li>
+                <li>Recursively compute three products: ac, bd, (a+b)(c+d)</li>
+                <li>Combine using: ac × 10^(2m) + ((a+b)(c+d) - ac - bd) × 10^m + bd</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION countDigits(n):
+    IF n == 0: RETURN 1
+    count = 0
+    WHILE n > 0:
+        count++
+        n = n / 10
+    RETURN count
+
+FUNCTION karatsuba(x, y):
+    IF x < 10 OR y < 10:
+        RETURN x * y
+    n = max(countDigits(x), countDigits(y))
+    m = n / 2
+    tenpowM = 10^m
+    a = x / tenpowM
+    b = x % tenpowM
+    c = y / tenpowM
+    d = y % tenpowM
+    ac = karatsuba(a, c)
+    bd = karatsuba(b, d)
+    midExp = karatsuba(a+b, c+d) - ac - bd
+    RETURN ac * tenpowM * tenpowM + midExp * tenpowM + bd</code></pre>
+
+        <span class="complexity good">⏱ O(n^1.585)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+
+    static long karatsuba(long x, long y) {
+        if (x < 10 || y < 10) {
+            return x * y;
+        }
+
+        int n = Math.max(countDigits(x), countDigits(y));
+        int m = n / 2;
+        long tenpowM = (long) Math.pow(10, m);
+
+        long a = x / tenpowM;
+        long b = x % tenpowM;
+        long c = y / tenpowM;
+        long d = y % tenpowM;
+
+        long ac = karatsuba(a, c);
+        long bd = karatsuba(b, d);
+        long midExp = karatsuba(a + b, c + d) - ac - bd;
+
+        long res = ac * tenpowM * tenpowM + midExp * tenpowM + bd;
+        return res;
+    }
+
+    static int countDigits(long n) {
+        if (n == 0) return 1;
+        int count = 0;
+        while (n > 0) {
+            count++;
+            n /= 10;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter first number: ");
+        long x = sc.nextLong();
+
+        System.out.print("Enter second number: ");
+        long y = sc.nextLong();
+
+        long result = karatsuba(x, y);
+        System.out.println("Product = " + result);
+
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 3. LONGEST 1s ================= -->
+    <section id="longest1s">
+        <h2>3. Longest Sequence of 1s After Flipping Bits</h2>
+
+        <h3>3.1 Brute Force (Flip 1 bit)</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>For each starting position, extend window</li>
+                <li>Count zeros; if more than 1 zero, break</li>
+                <li>Track maximum window size</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION bruteForce(ar):
+    max = 0
+    FOR i = 0 TO n-1:
+        zeroCount = 0
+        FOR j = i TO n-1:
+            IF ar[j] == 0: zeroCount++
+            IF zeroCount > 1: BREAK
+            size = j - i + 1
+            max = max(max, size)
+    RETURN max</code></pre>
+
+        <span class="complexity">⏱ O(n²)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements (0s and 1s):");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int max = 0;
+
+        for (int i = 0; i < ar.length; i++) {
+            int zeroCount = 0;
+            for (int j = i; j < ar.length; j++) {
+                if (ar[j] == 0) zeroCount++;
+                if (zeroCount > 1) break;
+                int size = j - i + 1;
+                if (size > max) max = size;
+            }
+        }
+
+        System.out.println("Longest sequence = " + max);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>3.2 Optimal Sliding Window (Flip 1 bit)</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Use two pointers (left, right)</li>
+                <li>Expand right; count zeros</li>
+                <li>Shrink left while zeroCount > 1</li>
+                <li>Track maximum window size</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION optimal(ar):
+    left = 0, zeroCount = 0, max = 0
+    FOR right = 0 TO n-1:
+        IF ar[right] == 0: zeroCount++
+        WHILE zeroCount > 1:
+            IF ar[left] == 0: zeroCount--
+            left++
+        size = right - left + 1
+        max = max(max, size)
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements (0s and 1s):");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int left = 0;
+        int zeroCount = 0;
+        int max = 0;
+
+        for (int right = 0; right < ar.length; right++) {
+            if (ar[right] == 0) zeroCount++;
+
+            while (zeroCount > 1) {
+                if (ar[left] == 0) zeroCount--;
+                left++;
+            }
+
+            int size = right - left + 1;
+            if (size > max) max = size;
+        }
+
+        System.out.println("Longest sequence = " + max);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>3.3 Sliding Window (Flip k bits)</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION optimalK(ar, k):
+    left = 0, zeroCount = 0, max = 0
+    FOR right = 0 TO n-1:
+        IF ar[right] == 0: zeroCount++
+        WHILE zeroCount > k:
+            IF ar[left] == 0: zeroCount--
+            left++
+        size = right - left + 1
+        max = max(max, size)
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements (0s and 1s):");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter k (number of bits to flip): ");
+        int k = sc.nextInt();
+
+        int left = 0;
+        int zeroCount = 0;
+        int max = 0;
+
+        for (int right = 0; right < ar.length; right++) {
+            if (ar[right] == 0) zeroCount++;
+
+            while (zeroCount > k) {
+                if (ar[left] == 0) zeroCount--;
+                left++;
+            }
+
+            int size = right - left + 1;
+            if (size > max) max = size;
+        }
+
+        System.out.println("Longest sequence = " + max);
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 4. NIBBLES ================= -->
+    <section id="nibbles">
+        <h2>4. Swap Two Nibbles in a Byte</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Extract left nibble using AND with 0xF0</li>
+                <li>Extract right nibble using AND with 0x0F</li>
+                <li>Right shift left nibble by 4, left shift right nibble by 4</li>
+                <li>Combine using OR</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION swapNibbles(num):
+    leftNibble = num & 0xF0
+    rightNibble = num & 0x0F
+    res = (leftNibble >> 4) | (rightNibble << 4)
+    RETURN res</code></pre>
+
+        <span class="complexity good">⏱ O(1)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+
+        int leftNibble = num & 0xF0;
+        int rightNibble = num & 0x0F;
+
+        int res = (leftNibble >> 4) | (rightNibble << 4);
+
+        System.out.println("After swapping nibbles: " + res);
+        sc.close();
+    }
+}</code></pre>
+
+        <div class="info-box">
+            <strong>Example:</strong> Input 53 (0011 0101) → Output 83 (0101 0011)
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 5. BLOCK SWAP ================= -->
+    <section id="blockswap">
+        <h2>5. Block Swap Algorithm</h2>
+
+        <h3>5.1 Left Rotation</h3>
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Reverse first k elements</li>
+                <li>Reverse remaining n-k elements</li>
+                <li>Reverse entire array</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION reverse(arr, left, right):
+    WHILE left < right:
+        swap(arr[left], arr[right])
+        left++, right--
+
+FUNCTION leftRotate(arr, k):
+    k = k % n
+    reverse(arr, 0, k-1)
+    reverse(arr, k, n-1)
+    reverse(arr, 0, n-1)</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.Scanner;
+
+public class Main {
+
+    public static void reverse(int[] arr, int left, int right) {
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter number of left rotations: ");
+        int k = sc.nextInt();
+
+        k = k % n;
+
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
+        reverse(arr, 0, n - 1);
+
+        System.out.println("Rotated array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>5.2 Right Rotation</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION rightRotate(arr, k):
+    k = k % n
+    reverse(arr, 0, n-1)
+    reverse(arr, 0, k-1)
+    reverse(arr, k, n-1)</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.Scanner;
+
+public class Main {
+
+    public static void reverse(int[] arr, int left, int right) {
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter number of right rotations: ");
+        int k = sc.nextInt();
+
+        k = k % n;
+
+        reverse(arr, 0, n - 1);
+        reverse(arr, 0, k - 1);
+        reverse(arr, k, n - 1);
+
+        System.out.println("Rotated array:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>5.3 Reverse Between Two Indexes</h3>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.Scanner;
+
+public class Main {
+
+    static void reverse(int[] arr, int left, int right) {
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter left index: ");
+        int left = sc.nextInt();
+
+        System.out.print("Enter right index: ");
+        int right = sc.nextInt();
+
+        reverse(arr, left, right);
+
+        System.out.println("Array after reversing between " + left + " and " + right + ":");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>5.4 Reverse First k and Last k Elements</h3>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.Scanner;
+
+public class Main {
+
+    static void reverse(int[] arr, int left, int right) {
+        while (left < right) {
+            int temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+            left++;
+            right--;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter k: ");
+        int k = sc.nextInt();
+
+        reverse(arr, 0, k - 1);
+        reverse(arr, n - k, n - 1);
+
+        System.out.println("Array after reversing first " + k + " and last " + k + " elements:");
+        for (int i = 0; i < n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 6. MAX PRODUCT ================= -->
+    <section id="maxproduct">
+        <h2>6. Max Product Subarray</h2>
+
+        <h3>6.1 Brute Force (Triple Loop)</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION bruteForceTriple(ar):
+    max = -INF
+    FOR i = 0 TO n-1:
+        FOR j = i TO n-1:
+            prod = 1
+            FOR k = i TO j:
+                prod *= ar[k]
+            max = max(max, prod)
+    RETURN max</code></pre>
+
+        <span class="complexity">⏱ O(n³)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < ar.length; i++) {
+            for (int j = i; j < ar.length; j++) {
+                int prod = 1;
+                for (int k = i; k <= j; k++) {
+                    prod = prod * ar[k];
+                }
+                if (prod > max) max = prod;
+            }
+        }
+
+        System.out.println("Maximum product = " + max);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>6.2 Brute Force (Double Loop)</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION bruteForceDouble(ar):
+    max = -INF
+    FOR i = 0 TO n-1:
+        prod = 1
+        FOR j = i TO n-1:
+            prod *= ar[j]
+            max = max(max, prod)
+    RETURN max</code></pre>
+
+        <span class="complexity medium">⏱ O(n²)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < ar.length; i++) {
+            int prod = 1;
+            for (int j = i; j < ar.length; j++) {
+                prod = prod * ar[j];
+                if (prod > max) max = prod;
+            }
+        }
+
+        System.out.println("Maximum product = " + max);
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>6.3 Optimal (Left-Right Product)</h3>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Traverse left to right, keeping running product</li>
+                <li>Traverse right to left, keeping running product</li>
+                <li>Reset product to 1 when it becomes 0</li>
+                <li>Track maximum of both passes</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION optimal(ar):
+    max = -INF
+    leftProd = 1, rightProd = 1
+    FOR i = 0 TO n-1:
+        leftProd *= ar[i]
+        max = max(max, leftProd)
+        IF leftProd == 0: leftProd = 1
+
+        rightProd *= ar[n-1-i]
+        max = max(max, rightProd)
+        IF rightProd == 0: rightProd = 1
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int max = Integer.MIN_VALUE;
+        int leftProd = 1;
+        int rightProd = 1;
+
+        for (int i = 0; i < ar.length; i++) {
+            leftProd = leftProd * ar[i];
+            if (leftProd > max) max = leftProd;
+            if (leftProd == 0) leftProd = 1;
+
+            rightProd = rightProd * ar[ar.length - 1 - i];
+            if (rightProd > max) max = rightProd;
+            if (rightProd == 0) rightProd = 1;
+        }
+
+        System.out.println("Maximum product = " + max);
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 7. HOURGLASS ================= -->
+    <section id="hourglass">
+        <h2>7. Maximum Sum of Hourglass in Matrix</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Hourglass needs 3×3 area</li>
+                <li>Pattern: top row (3), middle center (1), bottom row (3)</li>
+                <li>Slide window across matrix</li>
+                <li>Track maximum sum</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION maxHourglass(ar):
+    IF rows < 3 OR cols < 3: RETURN "Cannot form"
+    max = -INF
+    FOR i = 0 TO rows-3:
+        FOR j = 0 TO cols-3:
+            sum = ar[i][j] + ar[i][j+1] + ar[i][j+2]
+                + ar[i+1][j+1]
+                + ar[i+2][j] + ar[i+2][j+1] + ar[i+2][j+2]
+            max = max(max, sum)
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(rows × cols)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of rows: ");
+        int row = sc.nextInt();
+
+        System.out.print("Enter number of columns: ");
+        int col = sc.nextInt();
+
+        int[][] ar = new int[row][col];
+        System.out.println("Enter matrix elements:");
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                ar[i][j] = sc.nextInt();
+            }
+        }
+
+        if (row < 3 || col < 3) {
+            System.out.println("Hourglass cannot be formed");
+            sc.close();
+            return;
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i <= row - 3; i++) {
+            for (int j = 0; j <= col - 3; j++) {
+                int sum = ar[i][j] + ar[i][j + 1] + ar[i][j + 2]
+                        + ar[i + 1][j + 1]
+                        + ar[i + 2][j] + ar[i + 2][j + 1] + ar[i + 2][j + 2];
+
+                if (sum > max) max = sum;
+            }
+        }
+
+        System.out.println("Maximum Hourglass Sum: " + max);
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 8. EQUILIBRIUM ================= -->
+    <section id="equilibrium">
+        <h2>8. Max Equilibrium Sum</h2>
+
+        <h3>8.1 Brute Force</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION bruteForce(ar):
+    max = -INF
+    FOR i = 0 TO n-1:
+        leftSum = 0, rightSum = 0
+        FOR j = 0 TO i-1: leftSum += ar[j]
+        FOR j = i+1 TO n-1: rightSum += ar[j]
+        IF leftSum == rightSum:
+            max = max(max, leftSum)
+    RETURN max</code></pre>
+
+        <span class="complexity medium">⏱ O(n²)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < ar.length; i++) {
+            int leftSum = 0;
+            int rightSum = 0;
+
+            for (int j = 0; j < i; j++) leftSum += ar[j];
+            for (int j = i + 1; j < ar.length; j++) rightSum += ar[j];
+
+            if (leftSum == rightSum) {
+                if (leftSum > max) max = leftSum;
+            }
+        }
+
+        if (max == Integer.MIN_VALUE) {
+            System.out.println("No equilibrium index");
+        } else {
+            System.out.println("Maximum equilibrium sum: " + max);
+        }
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>8.2 Prefix-Suffix Arrays</h3>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Build prefix sum array</li>
+                <li>Build suffix sum array</li>
+                <li>leftSum = prefix[i] - ar[i]</li>
+                <li>rightSum = suffix[i] - ar[i]</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION prefixSuffix(ar):
+    prefix[0] = ar[0]
+    FOR i = 1 TO n-1: prefix[i] = prefix[i-1] + ar[i]
+
+    suffix[n-1] = ar[n-1]
+    FOR i = n-2 DOWNTO 0: suffix[i] = suffix[i+1] + ar[i]
+
+    max = -INF
+    FOR i = 0 TO n-1:
+        leftSum = prefix[i] - ar[i]
+        rightSum = suffix[i] - ar[i]
+        IF leftSum == rightSum:
+            max = max(max, leftSum)
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(n) &nbsp;|&nbsp; 💾 O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int[] prefix = new int[ar.length];
+        int sum = 0;
+        for (int i = 0; i < ar.length; i++) {
+            sum += ar[i];
+            prefix[i] = sum;
+        }
+
+        sum = 0;
+        int[] suffix = new int[ar.length];
+        for (int i = ar.length - 1; i >= 0; i--) {
+            sum += ar[i];
+            suffix[i] = sum;
+        }
+
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < ar.length; i++) {
+            int leftSum = prefix[i] - ar[i];
+            int rightSum = suffix[i] - ar[i];
+            if (leftSum == rightSum) {
+                if (leftSum > max) max = leftSum;
+            }
+        }
+
+        if (max == Integer.MIN_VALUE) {
+            System.out.println("No equilibrium index");
+        } else {
+            System.out.println("Maximum equilibrium sum: " + max);
+        }
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>8.3 Most Optimal (Single Pass)</h3>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Compute total sum</li>
+                <li>Maintain running left sum</li>
+                <li>rightSum = totalSum - leftSum - ar[i]</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION mostOptimal(ar):
+    totalSum = sum(ar)
+    leftSum = 0
+    max = -INF
+    FOR i = 0 TO n-1:
+        rightSum = totalSum - leftSum - ar[i]
+        IF leftSum == rightSum:
+            max = max(max, leftSum)
+        leftSum += ar[i]
+    RETURN max</code></pre>
+
+        <span class="complexity good">⏱ O(n) &nbsp;|&nbsp; 💾 O(1)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Scanner;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        int totalSum = 0;
+        for (int i = 0; i < ar.length; i++) totalSum += ar[i];
+
+        int leftSum = 0;
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < ar.length; i++) {
+            int rightSum = totalSum - leftSum - ar[i];
+
+            if (leftSum == rightSum) {
+                max = Math.max(max, leftSum);
+            }
+
+            leftSum += ar[i];
+        }
+
+        if (max == Integer.MIN_VALUE) {
+            System.out.println("No equilibrium index");
+        } else {
+            System.out.println("Maximum equilibrium sum: " + max);
+        }
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 9. LEADERS ================= -->
+    <section id="leaders">
+        <h2>9. Leaders in Array</h2>
+
+        <div class="info-box">
+            <strong>Definition:</strong> An element is a leader if it is greater than or equal to all elements on its right.
+        </div>
+
+        <h3>9.1 Brute Force</h3>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION isLeader(element, ind, arr):
+    FOR i = ind TO n-1:
+        IF element < arr[i]: RETURN false
+    RETURN true
+
+FUNCTION bruteForce(ar):
+    list = []
+    FOR i = 0 TO n-1:
+        IF isLeader(ar[i], i+1, ar):
+            list.addFirst(ar[i])
+    RETURN list</code></pre>
+
+        <span class="complexity">⏱ O(n²)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static boolean isLeader(int element, int ind, int[] arr) {
+        for (int i = ind; i < arr.length; i++) {
+            if (element < arr[i]) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        LinkedList<Integer> list = new LinkedList<Integer>();
+
+        for (int i = 0; i < ar.length; i++) {
+            if (isLeader(ar[i], i + 1, ar)) {
+                list.addFirst(ar[i]);
+            }
+        }
+
+        System.out.println("Leaders:");
+        for (int x : list) System.out.print(x + " ");
+        sc.close();
+    }
+}</code></pre>
+
+        <h3>9.2 Optimal (Right to Left)</h3>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Traverse from right</li>
+                <li>Track maximum seen so far</li>
+                <li>If current >= max, it's a leader</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION optimal(ar):
+    list = []
+    max = -INF
+    FOR i = n-1 DOWNTO 0:
+        IF ar[i] >= max:
+            list.addFirst(ar[i])
+            max = ar[i]
+    RETURN list</code></pre>
+
+        <span class="complexity good">⏱ O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] ar = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            ar[i] = sc.nextInt();
+        }
+
+        LinkedList<Integer> list = new LinkedList<Integer>();
+        int max = Integer.MIN_VALUE;
+
+        for (int i = ar.length - 1; i >= 0; i--) {
+            if (ar[i] >= max) {
+                list.addFirst(ar[i]);
+                max = ar[i];
+            }
+        }
+
+        System.out.println("Leaders:");
+        for (int x : list) System.out.print(x + " ");
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 10. MAJORITY ================= -->
+    <section id="majority">
+        <h2>10. Majority Element</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Count frequency of each element using HashMap</li>
+                <li>Element with frequency > n/2 is majority</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION majorityElement(arr):
+    map = {}
+    FOR each num in arr:
+        map[num] = map.getOrDefault(num, 0) + 1
+    FOR each entry in map:
+        IF entry.value > n/2:
+            RETURN entry.key
+    RETURN "No majority"</code></pre>
+
+        <span class="complexity good">⏱ O(n) &nbsp;|&nbsp; 💾 O(n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        }
+
+        boolean found = false;
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > arr.length / 2) {
+                System.out.println("Majority Element: " + entry.getKey());
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) System.out.println("No majority element");
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 11. PALINDROME ================= -->
+    <section id="palindrome">
+        <h2>11. Lexicographically First Palindromic String</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Count character frequencies using TreeMap (sorted)</li>
+                <li>If more than 1 odd frequency → invalid</li>
+                <li>Build left half from sorted characters</li>
+                <li>Middle = odd character (if any)</li>
+                <li>Right half = reverse of left</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION firstPalindrome(s):
+    map = TreeMap()
+    FOR each ch in s:
+        map[ch] = map.getOrDefault(ch, 0) + 1
+
+    oddCount = 0, oddChar = ' '
+    FOR each entry in map:
+        IF entry.value % 2 != 0:
+            oddCount++
+            oddChar = entry.key
+
+    IF oddCount > 1: RETURN "Invalid"
+
+    sb = StringBuilder()
+    FOR each entry in map:
+        FOR i = 0 TO freq/2 - 1:
+            sb.append(ch)
+
+    left = sb.toString()
+    right = sb.reverse().toString()
+
+    IF oddCount == 1:
+        RETURN left + oddChar + right
+    ELSE:
+        RETURN left + right</code></pre>
+
+        <span class="complexity good">⏱ O(n log n)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>package com.basics;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter string: ");
+        String s = sc.next();
+
+        TreeMap<Character, Integer> map = new TreeMap<Character, Integer>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        int oddCount = 0;
+        char oddChar = ' ';
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() % 2 != 0) {
+                oddCount++;
+                oddChar = entry.getKey();
+            }
+        }
+
+        if (oddCount > 1) {
+            System.out.println("Invalid String");
+            sc.close();
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            int freq = entry.getValue();
+            char ch = entry.getKey();
+            for (int i = 0; i < freq / 2; i++) {
+                sb.append(ch);
+            }
+        }
+
+        String left = sb.toString();
+        String right = sb.reverse().toString();
+        String res = "";
+
+        if (oddCount == 1) res = left + oddChar + right;
+        else res = left + right;
+
+        System.out.println("Lexicographically first palindrome: " + res);
+        sc.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= 12. NATURAL SORT ================= -->
+    <section id="natural">
+        <h2>12. Natural Sort Order</h2>
+
+        <div class="methodology">
+            <h4>Methodology</h4>
+            <ul>
+                <li>Split strings into text and number parts using regex</li>
+                <li>Compare text parts lexicographically</li>
+                <li>Compare number parts numerically</li>
+                <li>Continue until difference found</li>
+            </ul>
+        </div>
+
+        <h4>Pseudocode</h4>
+        <pre><code>FUNCTION naturalCompare(s1, s2):
+    pattern = /(\D*)(\d*)/
+    m1 = pattern.matcher(s1)
+    m2 = pattern.matcher(s2)
+
+    WHILE m1.find() AND m2.find():
+        textCompare = m1.group(1).compareTo(m2.group(1))
+        IF textCompare != 0: RETURN textCompare
+
+        num1 = m1.group(2), num2 = m2.group(2)
+        IF num1.isEmpty() AND num2.isEmpty(): CONTINUE
+
+        n1 = num1.isEmpty() ? 0 : parseInt(num1)
+        n2 = num2.isEmpty() ? 0 : parseInt(num2)
+        IF n1 != n2: RETURN n1 - n2
+
+    RETURN s1.compareTo(s2)</code></pre>
+
+        <span class="complexity good">⏱ O(n log n × m)</span>
+
+        <h4>Source Code</h4>
+        <pre><code>import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+class NaturalOrderComparator implements Comparator<String> {
+    Pattern pattern = Pattern.compile("(\\D*)(\\d*)");
+
+    public int compare(String s1, String s2) {
+        Matcher m1 = pattern.matcher(s1);
+        Matcher m2 = pattern.matcher(s2);
+
+        while (m1.find() && m2.find()) {
+            int textCompare = m1.group(1).compareTo(m2.group(1));
+            if (textCompare != 0) return textCompare;
+
+            String num1 = m1.group(2);
+            String num2 = m2.group(2);
+
+            if (num1.isEmpty() && num2.isEmpty()) continue;
+
+            int n1 = num1.isEmpty() ? 0 : Integer.parseInt(num1);
+            int n2 = num2.isEmpty() ? 0 : Integer.parseInt(num2);
+
+            if (n1 != n2) return n1 - n2;
+        }
+        return s1.compareTo(s2);
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number of strings: ");
+        int n = scanner.nextInt();
+        scanner.nextLine();
+
+        List<String> list = new ArrayList<>();
+        System.out.println("Enter the strings:");
+        for (int i = 0; i < n; i++) {
+            list.add(scanner.nextLine());
+        }
+
+        Collections.sort(list, new NaturalOrderComparator());
+
+        System.out.println("Natural Sorted Order:");
+        for (String s : list) {
+            System.out.println(s);
+        }
+        scanner.close();
+    }
+}</code></pre>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ================= SUMMARY ================= -->
+    <section id="summary">
+        <h2>Summary Table</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Algorithm</th>
+                    <th>Best Time Complexity</th>
+                    <th>Space Complexity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>HCF - Brute Force</td><td>O(min(a,b))</td><td>O(1)</td></tr>
+                <tr><td>2</td><td>HCF - Subtraction</td><td>O(max(a,b))</td><td>O(1)</td></tr>
+                <tr><td>3</td><td>HCF - Euclidean</td><td>O(log(min(a,b)))</td><td>O(1)</td></tr>
+                <tr><td>4</td><td>Karatsuba</td><td>O(n<sup>1.585</sup>)</td><td>O(log n)</td></tr>
+                <tr><td>5</td><td>Longest 1s - Brute</td><td>O(n²)</td><td>O(1)</td></tr>
+                <tr><td>6</td><td>Longest 1s - Optimal</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>7</td><td>Swap Nibbles</td><td>O(1)</td><td>O(1)</td></tr>
+                <tr><td>8</td><td>Left Rotation</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>9</td><td>Right Rotation</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>10</td><td>Max Product - Brute</td><td>O(n²)</td><td>O(1)</td></tr>
+                <tr><td>11</td><td>Max Product - Optimal</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>12</td><td>Hourglass Sum</td><td>O(rows×cols)</td><td>O(1)</td></tr>
+                <tr><td>13</td><td>Equilibrium - Brute</td><td>O(n²)</td><td>O(1)</td></tr>
+                <tr><td>14</td><td>Equilibrium - Prefix</td><td>O(n)</td><td>O(n)</td></tr>
+                <tr><td>15</td><td>Equilibrium - Optimal</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>16</td><td>Leaders - Brute</td><td>O(n²)</td><td>O(1)</td></tr>
+                <tr><td>17</td><td>Leaders - Optimal</td><td>O(n)</td><td>O(1)</td></tr>
+                <tr><td>18</td><td>Majority Element</td><td>O(n)</td><td>O(n)</td></tr>
+                <tr><td>19</td><td>First Palindrome</td><td>O(n log n)</td><td>O(n)</td></tr>
+                <tr><td>20</td><td>Natural Sort</td><td>O(n log n × m)</td><td>O(n)</td></tr>
+            </tbody>
+        </table>
+
+        <div class="info-box">
+            <strong>Tip:</strong> Press <code>Ctrl + P</code> (or <code>Cmd + P</code> on Mac) and select <strong>"Save as PDF"</strong> to export this entire document as a PDF file!
+        </div>
+    </section>
+
+</main>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top">↑</a>
+
+</body>
+</html>
